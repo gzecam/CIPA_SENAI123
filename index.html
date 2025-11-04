@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COVID-19: Alerta e Prevenção 2025</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <title>Novembro Azul - Cuide da Sua Saúde</title>
     <style>
         * {
             margin: 0;
@@ -14,116 +13,132 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: #333;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e8ba3 100%);
+            color: #fff;
             overflow-x: hidden;
         }
 
         .hero {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 60px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            padding: 2rem;
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
+        .logo-container {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path fill="%23ffffff" fill-opacity="0.1" d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path></svg>') repeat-x;
-            opacity: 0.3;
-            animation: wave 20s linear infinite;
-        }
-
-        @keyframes wave {
-            0% { background-position: 0 0; }
-            100% { background-position: 1200px 0; }
-        }
-
-        .hero h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .hero p {
-            font-size: 1.3em;
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .alert-banner {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
-            color: white;
-            padding: 25px;
+            top: 2rem;
+            width: 100%;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-            font-size: 1.2em;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            animation: pulse 2s ease-in-out infinite;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 10;
         }
 
-        .alert-banner img {
+        .logo-img {
             height: 120px;
             width: auto;
+            object-fit: contain;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
         }
 
-        .alert-text {
-            flex: 1;
-            text-align: center;
-            min-width: 300px;
+        @media (max-width: 768px) {
+            .logo-img {
+                height: 90px;
+            }
+            .logo-container {
+                padding: 0 1rem;
+            }
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 40%;
+            left: 70%;
+            animation-delay: 6s;
+        }
+
+        .shape:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            top: 80%;
+            left: 30%;
+            animation-delay: 9s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-30px) translateX(20px); }
+            50% { transform: translateY(-60px) translateX(-20px); }
+            75% { transform: translateY(-30px) translateX(20px); }
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            50% { transform: scale(1.1); }
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideDown 1s ease-out;
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        @keyframes fadeInUp {
+        @keyframes slideDown {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(-50px);
             }
             to {
                 opacity: 1;
@@ -131,594 +146,605 @@
             }
         }
 
-        .stat-number {
-            font-size: 3em;
-            font-weight: bold;
-            color: #667eea;
-            margin: 15px 0;
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            animation: fadeIn 1.5s ease-out;
         }
 
-        .stat-label {
-            font-size: 1.1em;
-            color: #666;
-            font-weight: 600;
-        }
-
-        .chart-container {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            margin: 40px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .chart-title {
-            font-size: 1.8em;
-            color: #333;
-            margin-bottom: 25px;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .prevention-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-        }
-
-        .prevention-card {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .prevention-card:hover {
-            transform: scale(1.05);
-        }
-
-        .prevention-icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-
-        .prevention-title {
-            font-size: 1.3em;
-            color: #667eea;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .prevention-text {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .section-title {
-            font-size: 2.5em;
-            color: white;
-            text-align: center;
-            margin: 60px 0 30px 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .symptoms-container {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            margin: 40px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .symptoms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .symptom-item {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            transition: background 0.3s ease;
-        }
-
-        .symptom-item:hover {
-            background: #e9ecef;
-        }
-
-        .symptom-icon {
-            font-size: 2em;
-            margin-right: 15px;
-        }
-
-        .footer {
-            background: #1e3c72;
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            margin-top: 60px;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 40px;
+            background: #fff;
+            color: #1e3c72;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            border: none;
             border-radius: 50px;
-            text-decoration: none;
-            font-size: 1.2em;
+            cursor: pointer;
             font-weight: bold;
-            margin-top: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            animation: none;
         }
 
-        .risk-groups {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 40px;
+        .info-section {
+            padding: 5rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: #1e3c72;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
             border-radius: 20px;
-            margin: 40px 0;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            color: white;
+            opacity: 0;
+            transform: translateY(50px);
         }
 
-        .risk-groups h3 {
-            font-size: 2em;
-            margin-bottom: 20px;
+        .card.visible {
+            animation: slideUp 0.6s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .stats-section {
+            background: #1e3c72;
+            padding: 5rem 2rem;
             text-align: center;
         }
 
-        .risk-groups ul {
-            list-style: none;
-            font-size: 1.2em;
-            line-height: 2;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
         }
 
-        .risk-groups li::before {
-            content: "⚠️ ";
-            margin-right: 10px;
+        .stat-card {
+            padding: 2rem;
+            transition: transform 0.3s ease;
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2em;
-            }
-            
-            .stat-number {
-                font-size: 2em;
-            }
-            
-            .section-title {
-                font-size: 1.8em;
-            }
+        .stat-card:hover {
+            transform: scale(1.1);
+        }
 
-            .alert-banner {
-                flex-direction: column;
-                gap: 15px;
-            }
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #4FC3F7;
+            margin-bottom: 0.5rem;
+        }
 
-            .alert-banner img {
-                height: 50px;
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .quiz-section {
+            background: rgba(255, 255, 255, 0.95);
+            color: #1e3c72;
+            padding: 5rem 2rem;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 3rem auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .quiz-question {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .quiz-option {
+            padding: 1.5rem;
+            background: #f0f0f0;
+            border: 3px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .quiz-option:hover {
+            background: #e0e0e0;
+            transform: translateX(10px);
+        }
+
+        .quiz-option.correct {
+            background: #4CAF50;
+            color: white;
+            border-color: #2E7D32;
+        }
+
+        .quiz-option.incorrect {
+            background: #f44336;
+            color: white;
+            border-color: #c62828;
+        }
+
+        .quiz-result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #e3f2fd;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        .quiz-result.show {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .next-btn {
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: #1e3c72;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: none;
+        }
+
+        .next-btn.show {
+            display: inline-block;
+        }
+
+        .next-btn:hover {
+            background: #2a5298;
+            transform: scale(1.05);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            color: #1e3c72;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlide 0.3s ease-out;
+        }
+
+        @keyframes modalSlide {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
             }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .close-modal:hover {
+            color: #1e3c72;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            margin-top: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.5s ease;
         }
     </style>
 </head>
 <body>
-    <div class="alert-banner">
-        <img src="https://yt3.googleusercontent.com/wyGnsuVLCBoHStdhQ3Tj7Wr48yb_Oi2e1OmP2Rly99xB6wwe66T64bhCNDZkP5xxNHxF-lsE1A=s900-c-k-c0x00ffffff-no-rj" alt="Logo SENAI SP">
-        <div class="alert-text">
-            🚨 ALERTA SP: São Paulo lidera mortes por COVID-19 no Brasil | Aumento de 345% em 2025! 🚨
+    <section class="hero">
+        <div class="logo-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlXhzGAMyWdikYs89rfFNXy_XdmU55C-KKEw&s" alt="Logo Esquerda" class="logo-img">
+            <img src="https://sindiviarios-wp.s3.sa-east-1.amazonaws.com/wp-content/uploads/2016/10/17173307/logo-cipa-sipat.png" alt="Logo CIPA" class="logo-img">
         </div>
-        <img src="https://www.fatecsm.org.br/wp-content/uploads/2020/09/logo-cipa-sipat.png" alt="Logo CIPA">
-    </div>
-
-    <div class="hero">
-        <h1>COVID-19 está de volta</h1>
-        <p>O vírus não desapareceu. Precisamos estar atentos e seguir as medidas de prevenção.</p>
-    </div>
-
-    <div class="container">
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number">39,2 Mi</div>
-                <div class="stat-label">Total de casos no Brasil até out/2025</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">716 mil</div>
-                <div class="stat-label">Total de mortes no Brasil até out/2025</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">50,9%</div>
-                <div class="stat-label">Das mortes por SRAG são por COVID (ago-set/2025)</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">+151%</div>
-                <div class="stat-label">Aumento de casos em janeiro/2025</div>
-            </div>
-        </div>
-
-        <div style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 40px; border-radius: 20px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-            <h2 style="font-size: 2.5em; margin-bottom: 30px; text-align: center; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
-                📍 ATENÇÃO: Estado de São Paulo
-            </h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
-                <div style="background: rgba(255,255,255,0.2); padding: 25px; border-radius: 15px; text-align: center; backdrop-filter: blur(10px);">
-                    <div style="font-size: 2.5em; font-weight: bold; margin-bottom: 10px;">356</div>
-                    <div style="font-size: 1.1em;">Óbitos em 10 semanas (jan-mar/2025)</div>
-                </div>
-                <div style="background: rgba(255,255,255,0.2); padding: 25px; border-radius: 15px; text-align: center; backdrop-filter: blur(10px);">
-                    <div style="font-size: 2.5em; font-weight: bold; margin-bottom: 10px;">+345%</div>
-                    <div style="font-size: 1.1em;">Aumento de mortes comparado a 2024</div>
-                </div>
-                <div style="background: rgba(255,255,255,0.2); padding: 25px; border-radius: 15px; text-align: center; backdrop-filter: blur(10px);">
-                    <div style="font-size: 2.5em; font-weight: bold; margin-bottom: 10px;">17,6 mil</div>
-                    <div style="font-size: 1.1em;">Casos confirmados (jan-mar/2025)</div>
-                </div>
-                <div style="background: rgba(255,255,255,0.2); padding: 25px; border-radius: 15px; text-align: center; backdrop-filter: blur(10px);">
-                    <div style="font-size: 2.5em; font-weight: bold; margin-bottom: 10px;">5/dia</div>
-                    <div style="font-size: 1.1em;">Média de mortes diárias no estado</div>
-                </div>
-            </div>
-            <div style="margin-top: 30px; padding: 25px; background: rgba(255,255,255,0.15); border-radius: 15px; border-left: 5px solid #fff;">
-                <p style="font-size: 1.2em; line-height: 1.8; margin: 0;">
-                    <strong>🏆 São Paulo lidera o ranking nacional</strong> de mortes por COVID-19 em 2025. 
-                    A baixa cobertura vacinal é apontada como uma das principais causas desse cenário preocupante.
-                </p>
-            </div>
-        </div>
-
-        <div class="chart-container">
-            <h3 class="chart-title">📈 Evolução dos Casos de COVID-19 no Brasil (2025)</h3>
-            <canvas id="casesChart"></canvas>
-        </div>
-
-        <div class="chart-container">
-            <h3 class="chart-title">🗺️ Estados com Maior Tendência de Aumento</h3>
-            <canvas id="statesChart"></canvas>
-        </div>
-
-        <div class="risk-groups">
-            <h3>👥 Grupos de Maior Risco</h3>
-            <ul>
-                <li>Crianças menores de 2 anos (não expostas ao vírus anteriormente)</li>
-                <li>Idosos acima de 60 anos</li>
-                <li>Pessoas com comorbidades (diabetes, hipertensão, doenças cardíacas)</li>
-                <li>Imunossuprimidos</li>
-                <li>Gestantes</li>
-            </ul>
-        </div>
-
-        <h2 class="section-title">🛡️ Medidas de Prevenção</h2>
         
-        <div class="prevention-grid">
-            <div class="prevention-card">
-                <div class="prevention-icon">💉</div>
-                <div class="prevention-title">Vacinação</div>
-                <div class="prevention-text">Mantenha seu cartão de vacinação atualizado. A vacina reduz significativamente casos graves e mortes.</div>
-            </div>
-            <div class="prevention-card">
-                <div class="prevention-icon">😷</div>
-                <div class="prevention-title">Use Máscara</div>
-                <div class="prevention-text">Em ambientes fechados, com aglomeração ou se estiver com sintomas gripais.</div>
-            </div>
-            <div class="prevention-card">
-                <div class="prevention-icon">🧼</div>
-                <div class="prevention-title">Higienize as Mãos</div>
-                <div class="prevention-text">Lave com água e sabão frequentemente ou use álcool em gel 70%.</div>
-            </div>
-            <div class="prevention-card">
-                <div class="prevention-icon">🏠</div>
-                <div class="prevention-title">Fique em Casa</div>
-                <div class="prevention-text">Se apresentar sintomas gripais, evite sair e procure orientação médica.</div>
-            </div>
-            <div class="prevention-card">
-                <div class="prevention-icon">🪟</div>
-                <div class="prevention-title">Ventile Ambientes</div>
-                <div class="prevention-text">Mantenha janelas e portas abertas para circulação de ar.</div>
-            </div>
-            <div class="prevention-card">
-                <div class="prevention-icon">↔️</div>
-                <div class="prevention-title">Distanciamento</div>
-                <div class="prevention-text">Evite aglomerações e mantenha distância segura quando possível.</div>
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        
+        <div class="content">
+            <div class="logo">💙</div>
+            <h1>NOVEMBRO AZUL</h1>
+            <p class="subtitle">Sua saúde é sua maior riqueza. Cuide-se!</p>
+            <button class="cta-button" onclick="window.open('https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/s/saude-do-homem/novembro-azul', '_blank')">Saiba Mais</button>
+        </div>
+    </section>
+
+    <section class="info-section" id="info">
+        <div class="container">
+            <h2>Por Que Isso Importa?</h2>
+            <p class="section-subtitle">Conhecimento salva vidas. Informe-se sobre a prevenção do câncer de próstata.</p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">🏥</div>
+                    <h3>Diagnóstico Precoce</h3>
+                    <p>O câncer de próstata tem 90% de chances de cura quando detectado precocemente. Não deixe o medo vencer a prevenção.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">👨‍⚕️</div>
+                    <h3>Consultas Regulares</h3>
+                    <p>Homens a partir de 50 anos (ou 45 com histórico familiar) devem fazer exames anuais. A prevenção é o melhor remédio.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">💪</div>
+                    <h3>Quebre o Tabu</h3>
+                    <p>Cuidar da saúde é sinal de força, não de fraqueza. Converse abertamente sobre sua saúde com seu médico.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">🥗</div>
+                    <h3>Vida Saudável</h3>
+                    <p>Alimentação balanceada, exercícios físicos e evitar cigarro e álcool reduzem significativamente os riscos.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">🧠</div>
+                    <h3>Saúde Mental</h3>
+                    <p>Novembro Azul também é sobre saúde mental masculina. Não tenha vergonha de pedir ajuda quando precisar.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">👨‍👩‍👦</div>
+                    <h3>Família Importa</h3>
+                    <p>Converse com seus familiares sobre histórico de câncer. Essa informação pode salvar sua vida.</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="symptoms-container">
-            <h3 class="chart-title">🩺 Sintomas Mais Comuns</h3>
-            <div class="symptoms-grid">
-                <div class="symptom-item">
-                    <div class="symptom-icon">🤒</div>
-                    <div>Febre</div>
+    <section class="stats-section">
+        <div class="container">
+            <h2>Números Que Alertam</h2>
+            <p class="section-subtitle">Estatísticas importantes sobre o câncer de próstata no Brasil</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="65000">0</div>
+                    <div class="stat-label">Novos casos por ano</div>
                 </div>
-                <div class="symptom-item">
-                    <div class="symptom-icon">😮‍💨</div>
-                    <div>Tosse</div>
+                
+                <div class="stat-card">
+                    <div class="stat-number" data-target="2">0</div>
+                    <div class="stat-label">° Câncer mais comum</div>
                 </div>
-                <div class="symptom-item">
-                    <div class="symptom-icon">😫</div>
-                    <div>Falta de ar</div>
+                
+                <div class="stat-card">
+                    <div class="stat-number" data-target="90">0</div>
+                    <div class="stat-label">% de cura se detectado cedo</div>
                 </div>
-                <div class="symptom-item">
-                    <div class="symptom-icon">😴</div>
-                    <div>Fadiga</div>
+                
+                <div class="stat-card">
+                    <div class="stat-number" data-target="15000">0</div>
+                    <div class="stat-label">Mortes anuais no Brasil</div>
                 </div>
-                <div class="symptom-item">
-                    <div class="symptom-icon">🤧</div>
-                    <div>Coriza</div>
-                </div>
-                <div class="symptom-item">
-                    <div class="symptom-icon">😷</div>
-                    <div>Dor de garganta</div>
-                </div>
-                <div class="symptom-item">
-                    <div class="symptom-icon">🤕</div>
-                    <div>Dor de cabeça</div>
-                </div>
-                <div class="symptom-item">
-                    <div class="symptom-icon">💪</div>
-                    <div>Dor muscular</div>
-                </div>
-            </div>
-            <div style="margin-top: 30px; padding: 20px; background: #fff3cd; border-radius: 10px; border-left: 5px solid #ffc107;">
-                <strong>⚠️ IMPORTANTE:</strong> Se apresentar sintomas, procure orientação médica imediatamente e evite contato com outras pessoas.
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="footer">
-        <h3>💙 Juntos somos mais fortes!</h3>
-        <p style="margin-top: 20px; font-size: 1.1em;">A prevenção depende de cada um de nós. Cuide-se e proteja quem você ama.</p>
-        <p style="margin-top: 20px; color: #ccc;">Campanha de Conscientização COVID-19 - 2025</p>
+    <section class="quiz-section">
+        <div class="container">
+            <h2>Teste Seu Conhecimento</h2>
+            <p class="section-subtitle">Veja o quanto você sabe sobre prevenção e saúde masculina</p>
+            
+            <div class="quiz-container">
+                <div class="quiz-question" id="question"></div>
+                <div class="quiz-options" id="options"></div>
+                <div class="quiz-result" id="result"></div>
+                <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Próxima Pergunta</button>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">×</span>
+            <h2>💙 Parabéns!</h2>
+            <p style="margin-top: 1rem; font-size: 1.2rem;">Você concluiu o teste de conhecimento sobre Novembro Azul!</p>
+            <p style="margin-top: 1rem;">Lembre-se: a informação é o primeiro passo para a prevenção. Compartilhe este conhecimento com seus amigos e familiares.</p>
+            <p style="margin-top: 1rem; font-weight: bold;">Não deixe para depois. Agende sua consulta médica hoje!</p>
+            <button class="cta-button" style="margin-top: 2rem; animation: none;" onclick="closeModal()">Entendi!</button>
+        </div>
     </div>
 
     <script>
-        // Gráfico de Casos
-        const ctxCases = document.getElementById('casesChart').getContext('2d');
-        const casesChart = new Chart(ctxCases, {
-            type: 'line',
-            data: {
-                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 
-                         'Julho', 'Agosto', 'Setembro', 'Outubro'],
-                datasets: [{
-                    label: 'Casos de COVID-19',
-                    data: [57000, 45000, 38000, 32000, 28000, 25000, 27000, 35000, 42000, 48000],
-                    borderColor: '#667eea',
-                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.4,
-                    pointRadius: 6,
-                    pointBackgroundColor: '#667eea',
-                    pointBorderColor: '#fff',
-                    pointBorderWidth: 2,
-                    pointHoverRadius: 8
-                }]
+        const quizData = [
+            {
+                question: "A partir de que idade os homens devem começar os exames preventivos de próstata?",
+                options: ["40 anos", "50 anos (ou 45 com histórico familiar)", "60 anos", "Apenas quando sentir sintomas"],
+                correct: 1,
+                explanation: "Homens devem começar os exames aos 50 anos, ou aos 45 se houver histórico familiar de câncer de próstata."
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: true,
-                        labels: {
-                            font: {
-                                size: 14,
-                                weight: 'bold'
-                            }
-                        }
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(0,0,0,0.8)',
-                        padding: 12,
-                        titleFont: {
-                            size: 14,
-                            weight: 'bold'
-                        },
-                        bodyFont: {
-                            size: 13
-                        },
-                        callbacks: {
-                            label: function(context) {
-                                return 'Casos: ' + context.parsed.y.toLocaleString('pt-BR');
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                return (value / 1000) + 'k';
-                            },
-                            font: {
-                                size: 12
-                            }
-                        },
-                        grid: {
-                            color: 'rgba(0,0,0,0.05)'
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            font: {
-                                size: 12
-                            }
-                        },
-                        grid: {
-                            display: false
-                        }
-                    }
-                }
-            }
-        });
-
-        // Gráfico de Estados
-        const ctxStates = document.getElementById('statesChart').getContext('2d');
-        const statesChart = new Chart(ctxStates, {
-            type: 'bar',
-            data: {
-                labels: ['São Paulo', 'Rio de Janeiro', 'Minas Gerais', 'Espírito Santo', 
-                         'Paraná', 'Santa Catarina', 'Rio Grande do Sul',
-                         'Bahia', 'Pernambuco', 'Ceará'],
-                datasets: [{
-                    label: 'Índice de Crescimento (%)',
-                    data: [92, 88, 85, 82, 86, 83, 80, 87, 84, 81],
-                    backgroundColor: [
-                        'rgba(231, 76, 60, 0.8)',
-                        'rgba(231, 76, 60, 0.8)',
-                        'rgba(231, 76, 60, 0.8)',
-                        'rgba(231, 76, 60, 0.8)',
-                        'rgba(52, 152, 219, 0.8)',
-                        'rgba(52, 152, 219, 0.8)',
-                        'rgba(52, 152, 219, 0.8)',
-                        'rgba(241, 196, 15, 0.8)',
-                        'rgba(241, 196, 15, 0.8)',
-                        'rgba(241, 196, 15, 0.8)'
-                    ],
-                    borderColor: [
-                        'rgb(192, 57, 43)',
-                        'rgb(192, 57, 43)',
-                        'rgb(192, 57, 43)',
-                        'rgb(192, 57, 43)',
-                        'rgb(41, 128, 185)',
-                        'rgb(41, 128, 185)',
-                        'rgb(41, 128, 185)',
-                        'rgb(243, 156, 18)',
-                        'rgb(243, 156, 18)',
-                        'rgb(243, 156, 18)'
-                    ],
-                    borderWidth: 2
-                }]
+            {
+                question: "Qual a taxa de cura do câncer de próstata quando detectado precocemente?",
+                options: ["50%", "70%", "90%", "100%"],
+                correct: 2,
+                explanation: "Quando detectado precocemente, o câncer de próstata tem cerca de 90% de chances de cura."
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: true,
-                        labels: {
-                            font: {
-                                size: 14,
-                                weight: 'bold'
-                            }
-                        }
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(0,0,0,0.8)',
-                        padding: 12,
-                        callbacks: {
-                            label: function(context) {
-                                let region = '';
-                                const index = context.dataIndex;
-                                if (index <= 3) region = ' (Sudeste)';
-                                else if (index <= 6) region = ' (Sul)';
-                                else region = ' (Nordeste)';
-                                return 'Crescimento: ' + context.parsed.y + '%' + region;
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100,
-                        ticks: {
-                            callback: function(value) {
-                                return value + '%';
-                            },
-                            font: {
-                                size: 12
-                            }
-                        },
-                        grid: {
-                            color: 'rgba(0,0,0,0.05)'
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            font: {
-                                size: 11
-                            }
-                        },
-                        grid: {
-                            display: false
-                        }
-                    }
-                }
+            {
+                question: "Quais exames são importantes para detecção do câncer de próstata?",
+                options: ["Apenas exame de sangue", "Apenas exame de toque", "PSA (sangue) e exame de toque retal", "Apenas ultrassom"],
+                correct: 2,
+                explanation: "A combinação do exame de PSA (sangue) com o exame de toque retal é fundamental para diagnóstico preciso."
+            },
+            {
+                question: "O câncer de próstata apresenta sintomas no estágio inicial?",
+                options: ["Sim, sempre", "Não, geralmente é assintomático", "Apenas em casos graves", "Depende da idade"],
+                correct: 1,
+                explanation: "Na fase inicial, o câncer de próstata geralmente não apresenta sintomas, por isso os exames preventivos são essenciais."
+            },
+            {
+                question: "Além da prevenção do câncer, o Novembro Azul também alerta sobre:",
+                options: ["Apenas alimentação", "Saúde mental masculina", "Apenas exercícios físicos", "Apenas parar de fumar"],
+                correct: 1,
+                explanation: "O Novembro Azul também aborda a saúde mental masculina, incentivando homens a cuidarem do bem-estar emocional."
             }
-        });
+        ];
 
-        // Animação de contadores
-        function animateCounter(element, target, duration) {
-            let current = 0;
-            const increment = target / (duration / 16);
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    element.textContent = formatNumber(target);
-                    clearInterval(timer);
-                } else {
-                    element.textContent = formatNumber(Math.floor(current));
-                }
-            }, 16);
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const q = quizData[currentQuestion];
+            document.getElementById('question').textContent = q.question;
+            
+            const optionsDiv = document.getElementById('options');
+            optionsDiv.innerHTML = '';
+            
+            q.options.forEach((option, index) => {
+                const div = document.createElement('div');
+                div.className = 'quiz-option';
+                div.textContent = option;
+                div.onclick = () => checkAnswer(index);
+                optionsDiv.appendChild(div);
+            });
+
+            document.getElementById('result').classList.remove('show');
+            document.getElementById('nextBtn').classList.remove('show');
+            
+            updateProgress();
         }
 
-        function formatNumber(num) {
-            if (num >= 1000) {
-                return (num / 1000).toFixed(0) + 'k';
+        function checkAnswer(selected) {
+            const q = quizData[currentQuestion];
+            const options = document.querySelectorAll('.quiz-option');
+            
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+            
+            if (selected === q.correct) {
+                options[selected].classList.add('correct');
+                score++;
+                document.getElementById('result').innerHTML = `<strong>✓ Correto!</strong><br>${q.explanation}`;
+            } else {
+                options[selected].classList.add('incorrect');
+                options[q.correct].classList.add('correct');
+                document.getElementById('result').innerHTML = `<strong>✗ Incorreto.</strong><br>${q.explanation}`;
             }
-            return num.toString();
+            
+            document.getElementById('result').classList.add('show');
+            document.getElementById('nextBtn').classList.add('show');
         }
 
-        // Iniciar animações quando a página carregar
-        window.addEventListener('load', () => {
-            const statNumbers = document.querySelectorAll('.stat-number');
-            const targets = [39200000, 716000, 50.9, 151];
+        function nextQuestion() {
+            currentQuestion++;
+            
+            if (currentQuestion < quizData.length) {
+                const options = document.querySelectorAll('.quiz-option');
+                options.forEach(opt => {
+                    opt.classList.remove('correct', 'incorrect');
+                    opt.style.pointerEvents = 'auto';
+                });
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / quizData.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        function showFinalScore() {
+            document.querySelector('.quiz-container').innerHTML = `
+                <h3 style="font-size: 2rem; margin-bottom: 1rem;">Quiz Concluído! 🎉</h3>
+                <p style="font-size: 1.5rem; margin-bottom: 2rem;">Você acertou <strong>${score}</strong> de <strong>${quizData.length}</strong> questões!</p>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">${score >= 4 ? 'Excelente! Você está bem informado sobre prevenção!' : 'Continue se informando sobre saúde masculina!'}</p>
+                <button class="cta-button" style="animation: none;" onclick="location.reload()">Refazer Quiz</button>
+            `;
             
             setTimeout(() => {
-                statNumbers.forEach((element, index) => {
-                    const originalText = element.textContent;
-                    element.textContent = '0';
-                    
-                    if (index === 0) {
-                        // Para 39,2 Mi
-                        animateCounterCustom(element, targets[index], 2000, (val) => (val / 1000000).toFixed(1) + ' Mi');
-                    } else if (index === 1) {
-                        // Para 716 mil
-                        animateCounterCustom(element, targets[index], 2000, (val) => Math.floor(val / 1000) + ' mil');
-                    } else if (index === 2) {
-                        // Para 50,9%
-                        animateCounterCustom(element, targets[index], 2000, (val) => val.toFixed(1) + '%');
-                    } else {
-                        animateCounter(element, targets[index], 2000);
-                    }
-                });
-            }, 300);
-        });
-
-        function animateCounterCustom(element, target, duration, formatter) {
-            let current = 0;
-            const increment = target / (duration / 16);
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    element.textContent = formatter(target);
-                    clearInterval(timer);
-                } else {
-                    element.textContent = formatter(current);
-                }
-            }, 16);
+                document.getElementById('modal').classList.add('active');
+            }, 1000);
         }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        function scrollToInfo() {
+            document.getElementById('info').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value.toLocaleString('pt-BR');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const target = parseInt(stat.getAttribute('data-target'));
+                        animateValue(stat, 0, target, 2000);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const cardsObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadQuestion();
+            
+            const statsSection = document.querySelector('.stats-section');
+            statsObserver.observe(statsSection);
+
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => cardsObserver.observe(card));
+        });
     </script>
 </body>
 </html>
